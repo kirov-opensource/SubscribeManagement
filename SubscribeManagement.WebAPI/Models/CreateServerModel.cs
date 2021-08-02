@@ -55,7 +55,7 @@ namespace SubscribeManagement.WebAPI.Models
         }
 
         /// <summary>
-        /// ws h2 path
+        /// tcp ws h2 path
         /// </summary>
         public string Path
         {
