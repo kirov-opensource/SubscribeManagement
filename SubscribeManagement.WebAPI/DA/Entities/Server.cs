@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SubscribeManagement.WebAPI.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,12 +74,15 @@ namespace SubscribeManagement.WebAPI.Models
         /// <summary>
         /// 是否允许不安全连接（用于客户端）
         /// </summary>
-        public string AllowInsecure { get; set; }
+        public bool AllowInsecure { get; set; }
 
         /// <summary>
-        /// config type(1=normal,2=custom)
+        /// protocol
         /// </summary>
-        public int ConfigType { get; set; }
+        public ProtocolType ConfigType
+        {
+            get; set;
+        }
 
         /// <summary>
         /// 
@@ -94,5 +98,10 @@ namespace SubscribeManagement.WebAPI.Models
         /// VLESS flow
         /// </summary>
         public string Flow { get; set; }
+
+        /// <summary>
+        /// sni
+        /// </summary>
+        public string SNI { get; set; }
     }
 }

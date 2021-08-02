@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SubscribeManagement.WebAPI.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -73,7 +74,7 @@ namespace SubscribeManagement.WebAPI.Models
         /// <summary>
         /// 是否允许不安全连接（用于客户端）
         /// </summary>
-        public string AllowInsecure
+        public bool AllowInsecure
         {
             get; set;
         }
@@ -82,7 +83,7 @@ namespace SubscribeManagement.WebAPI.Models
         /// <summary>
         /// config type(1=normal,2=custom)
         /// </summary>
-        public int ConfigType
+        public ProtocolType ConfigType
         {
             get; set;
         }

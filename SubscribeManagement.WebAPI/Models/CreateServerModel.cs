@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SubscribeManagement.WebAPI.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,34 +12,42 @@ namespace SubscribeManagement.WebAPI.Models
         /// 版本
         /// </summary>
         public string ConfigVersion { get; set; }
+
         /// <summary>
         /// 地址
         /// </summary>
         public string Address { get; set; }
+
         /// <summary>
         /// 端口
         /// </summary>
         public int Port { get; set; }
+
         /// <summary>
         /// Id
         /// </summary>
         public string Id { get; set; }
+
         /// <summary>
         /// 额外Id
         /// </summary>
         public string AlterId { get; set; }
+
         /// <summary>
         /// 安全策略
         /// </summary>
         public string Security { get; set; }
+
         /// <summary>
         /// 网络 tcp,kcp,ws,h2,quic
         /// </summary>
         public string Network { get; set; }
+
         /// <summary>
         /// 备注
         /// </summary>
         public string Remark { get; set; }
+
         /// <summary>
         /// 伪装类型
         /// </summary>
@@ -46,6 +55,7 @@ namespace SubscribeManagement.WebAPI.Models
         {
             get; set;
         }
+
         /// <summary>
         /// 伪装的域名
         /// </summary>
@@ -73,16 +83,15 @@ namespace SubscribeManagement.WebAPI.Models
         /// <summary>
         /// 是否允许不安全连接（用于客户端）
         /// </summary>
-        public string AllowInsecure
+        public bool AllowInsecure
         {
             get; set;
         }
 
-
         /// <summary>
-        /// config type(1=normal,2=custom)
+        /// protocol
         /// </summary>
-        public int ConfigType
+        public ProtocolType ConfigType
         {
             get; set;
         }
