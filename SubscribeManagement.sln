@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscribeManagement.WebAPI", "SubscribeManagement.WebAPI\SubscribeManagement.WebAPI.csproj", "{FCEF8D9D-E6BC-4D9A-9155-03CB2EDF0CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscribeManagement.WebAPI", "SubscribeManagement.WebAPI\SubscribeManagement.WebAPI.csproj", "{FCEF8D9D-E6BC-4D9A-9155-03CB2EDF0CE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscribeManagement.Tests", "SubscribeManagement.Tests\SubscribeManagement.Tests.csproj", "{5F247AF4-3422-4100-8341-A1CC25018022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FCEF8D9D-E6BC-4D9A-9155-03CB2EDF0CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCEF8D9D-E6BC-4D9A-9155-03CB2EDF0CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEF8D9D-E6BC-4D9A-9155-03CB2EDF0CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F247AF4-3422-4100-8341-A1CC25018022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F247AF4-3422-4100-8341-A1CC25018022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F247AF4-3422-4100-8341-A1CC25018022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F247AF4-3422-4100-8341-A1CC25018022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

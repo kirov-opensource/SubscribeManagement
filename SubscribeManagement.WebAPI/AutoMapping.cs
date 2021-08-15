@@ -11,9 +11,9 @@ namespace SubscribeManagement.WebAPI
     {
         public AutoMapping()
         {
-            CreateMap<Server, ServerViewModel>();
-            CreateMap<CreateServerModel, Server>();
-            CreateMap<UpdateServerModel, Server>();
+            CreateMap<Server_bak, ServerViewModel>();
+            CreateMap<CreateServerModel, Server_bak>();
+            CreateMap<UpdateServerModel, Server_bak>();
         }
     }
 }

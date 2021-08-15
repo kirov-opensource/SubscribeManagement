@@ -1,5 +1,4 @@
-﻿using SubscribeManagement.WebAPI.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,10 +82,10 @@ namespace SubscribeManagement.WebAPI.Models
         /// <summary>
         /// config type(1=normal,2=custom)
         /// </summary>
-        public ProtocolType ConfigType
-        {
-            get; set;
-        }
+        //public ProtocolType ConfigType
+        //{
+        //    get; set;
+        //}
 
         /// <summary>
         /// 

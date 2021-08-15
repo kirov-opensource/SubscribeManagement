@@ -30,7 +30,8 @@ namespace SubscribeManagement.WebAPI
             if (!File.Exists(databasePath))
             {
                 var db = new SQLiteConnection(databasePath, false);
-                db.CreateTable<Server>();
+                db.CreateTable<Server_bak>();
+
             }
         }
         public Startup(IConfiguration configuration)
