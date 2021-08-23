@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using SubscribeManagement.WebAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SubscribeManagement.WebAPI.DA.Entities;
+using SubscribeManagement.WebAPI.Models.Connection;
 
 namespace SubscribeManagement.WebAPI
 {
@@ -11,9 +8,7 @@ namespace SubscribeManagement.WebAPI
     {
         public AutoMapping()
         {
-            CreateMap<Server_bak, ServerViewModel>();
-            CreateMap<CreateServerModel, Server_bak>();
-            CreateMap<UpdateServerModel, Server_bak>();
+            CreateMap<CreateConnectionModel, Connection>();
         }
     }
 }

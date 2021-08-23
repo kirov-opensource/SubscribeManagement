@@ -1,10 +1,4 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SubscribeManagement.WebAPI.DA.Entities
+﻿namespace SubscribeManagement.WebAPI.DA.Entities
 {
     public class User : BaseEntity
     {
