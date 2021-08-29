@@ -1,9 +1,11 @@
 ﻿using IdGen;
+using LinqKit;
 using NAutowired.Core.Attributes;
 using SQLite;
 using SubscribeManagement.WebAPI.DA.Entities;
 using SubscribeManagement.WebAPI.Exceptions;
 using SubscribeManagement.WebAPI.Extensions;
+using SubscribeManagement.WebAPI.Models;
 using SubscribeManagement.WebAPI.Models.Connection;
 using System;
 using System.Collections.Generic;
@@ -29,12 +31,34 @@ namespace SubscribeManagement.WebAPI.Services
             _mapper = autoMapper;
         }
 
-        public async Task<(long, IEnumerable<Connection>)> PageSearch()
+        public async Task<PageCollection<Connection>> PageSearch(PageSearchModel<SearchConnectionModel> pageSearchModel)
         {
-            var pagedCollection = _connection.Table<Connection>().Skip(0).Take(10).ToList();
-            var totalSize = _connection.Table<Connection>().Count();
-            return (totalSize, pagedCollection);
+            var filterExpression = PredicateBuilder.New<Connection>(true);
+
+            if (pageSearchModel?.Search?.CreateAtBegin.HasValue ?? false)
+            {
+                filterExpression.And(c => c.CreateAt >= pageSearchModel.Search.CreateAtBegin.Value);
+            }
+
+            if (pageSearchModel?.Search?.CreateAtEnd.HasValue ?? false)
+            {
+                filterExpression.And(c => c.CreateAt <= pageSearchModel.Search.CreateAtEnd.Value);
+            }
+
+            if (pageSearchModel?.Search?.Id.HasValue ?? false)
+            {
+                filterExpression.And(c => c.Id == pageSearchModel.Search.Id);
+            }
+            if (!string.IsNullOrWhiteSpace(pageSearchModel?.Search?.Name))
+            {
+                filterExpression.And(c => c.Name.Contains(pageSearchModel.Search.Name));
+            }
+
+            var pagedCollection = _connection.Table<Connection>().Where(filterExpression).Skip(pageSearchModel.SkipCount).Take(pageSearchModel.PageSize).ToList();
+            var totalSize = _connection.Table<Connection>().Where(filterExpression).Count();
+            return pageSearchModel.Done(totalSize, pagedCollection);
         }
+
         public async Task Create(CreateConnectionModel createModel)
         {
             //TODO: 校验
@@ -66,7 +90,7 @@ namespace SubscribeManagement.WebAPI.Services
         public async Task<string> GetURI(long id)
         {
             var connection = _connection.Get<Connection>(c => c.Id == id);
-            var connectionExtraProperties = _connection.Query<ConnectionExtraProperty>($"SELECT * FROM {nameof(ConnectionExtraProperty)} WHERE ConnectionId = ? ", id.ToString());
+            var connectionExtraProperties = _connection.Table<ConnectionExtraProperty>().Where(c => c.ConnectionId == id).ToList();
 
             IDictionary<string, object> data = new ExpandoObject();
             foreach (var propertyInfo in connection.GetType().GetProperties())

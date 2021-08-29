@@ -20,14 +20,10 @@ namespace SubscribeManagement.WebAPI.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> PageSearch()
+        public async Task<IActionResult> PageSearch([FromQuery] PageSearchModel<SearchConnectionModel> pageSearchModel)
         {
-            var data = await _connectionService.PageSearch();
-            return Ok(new
-            {
-                TotalCount = data.Item1,
-                Collection = data.Item2
-            });
+            var result = await _connectionService.PageSearch(pageSearchModel);
+            return Ok(result);
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateConnectionModel createModel)
