@@ -18,6 +18,17 @@ namespace SubscribeManagement.WebAPI.Controllers
             _connectionService = connectionService;
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> PageSearch()
+        {
+            var data = await _connectionService.PageSearch();
+            return Ok(new
+            {
+                TotalCount = data.Item1,
+                Collection = data.Item2
+            });
+        }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateConnectionModel createModel)
         {

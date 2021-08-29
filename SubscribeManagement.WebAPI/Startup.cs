@@ -1,13 +1,16 @@
 using IdGen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SQLite;
+using SubscribeManagement.WebAPI.Converters;
 using SubscribeManagement.WebAPI.DA.Entities;
 using SubscribeManagement.WebAPI.Middlewares;
 using SubscribeManagement.WebAPI.Services;
+using System;
 using System.IO;
 using System.Text.Json.Serialization;
 
@@ -74,15 +77,14 @@ namespace SubscribeManagement.WebAPI
 
             //×¢²á·þÎñ
             RegisterService(services);
+            Action<JsonOptions> configureJsonOptions = (opt) =>
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                opt.JsonSerializerOptions.Converters.Add(new LongToStringConverter());
+            };
 
-            services.AddControllers().AddJsonOptions(opt =>
-            {
-                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
-            services.AddControllersWithViews().AddJsonOptions(opt =>
-            {
-                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+            services.AddControllers().AddJsonOptions(configureJsonOptions);
+            services.AddControllersWithViews().AddJsonOptions(configureJsonOptions);
 
         }
 
