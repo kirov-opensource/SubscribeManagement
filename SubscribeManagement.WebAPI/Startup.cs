@@ -1,4 +1,5 @@
 using IdGen;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -53,6 +54,29 @@ namespace SubscribeManagement.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Auth
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+              .AddCookie(options =>
+              {
+                  options.LoginPath = "/api/auth/githubsignin";
+                  options.Events.OnRedirectToLogin = context =>
+                  {
+                      throw new Exceptions.UnauthenticatedException("ÉÐÎ´µÇÂ¼");
+                  };
+                  options.LogoutPath = "/api/auth/githubsignout";
+              })
+              .AddGitHub(options =>
+              {
+                  options.Scope.Add("user:email");
+                  options.ClientId = EnvironmentConsts.GITHUB_CLIENT_ID;
+                  options.ClientSecret = EnvironmentConsts.GITHUB_CLIENT_SECRET;
+              });
+
 
             //Id Worker
             IdGenerator generator = new IdGenerator(0);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SubscribeManagement.WebAPI.Models;
 using SubscribeManagement.WebAPI.Models.Connection;
 using SubscribeManagement.WebAPI.Services;
@@ -9,6 +10,7 @@ namespace SubscribeManagement.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ConnectionController : ControllerBase
     {
         private readonly ConnectionService _connectionService;
